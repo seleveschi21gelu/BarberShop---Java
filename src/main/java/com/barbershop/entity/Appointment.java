@@ -19,6 +19,8 @@ public class Appointment {
     private String telephone;
     private String time;
 
+
+
     public Appointment() {
     }
 
