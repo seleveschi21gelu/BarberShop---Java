@@ -1,34 +1,35 @@
 package com.barbershop.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 
 @Entity
-public class Appointment {
+public class AppointmentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String client;
-    private LocalDate localDate;
+    private LocalDate date;
     private String telephone;
     private String time;
 
+    @ManyToOne
+    @JoinColumn(name = "barberId", referencedColumnName = "id")
+    private BarberEntity barber;
 
 
-    public Appointment() {
+    public AppointmentEntity() {
     }
 
-    public Appointment(String client, LocalDate localDate, String telephone, String time) {
+    public AppointmentEntity(String client, LocalDate date, String telephone, String time,BarberEntity barber) {
         this.client = client;
-        this.localDate = localDate;
+        this.date = date;
         this.telephone = telephone;
         this.time = time;
+        this.barber =barber;
     }
 
     public Integer getId() {
@@ -47,12 +48,12 @@ public class Appointment {
         this.client = client;
     }
 
-    public LocalDate getLocalDate() {
-        return localDate;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setLocalDate(LocalDate localDate) {
-        this.localDate = localDate;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public String getTelephone() {
@@ -69,5 +70,13 @@ public class Appointment {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public BarberEntity getBarber() {
+        return barber;
+    }
+
+    public void setBarber(BarberEntity barber) {
+        this.barber = barber;
     }
 }

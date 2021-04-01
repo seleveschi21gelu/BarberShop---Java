@@ -1,6 +1,6 @@
 package com.barbershop.controller;
 
-import com.barbershop.entity.Appointment;
+import com.barbershop.entity.AppointmentEntity;
 import com.barbershop.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,24 +16,24 @@ public class AppointmentRestController {
     private AppointmentService appointmentService;
 
     @GetMapping
-    public List<Appointment> getAllAppointment() {
+    public List<AppointmentEntity> getAllAppointment() {
         return appointmentService.getAllAppointments();
     }
 
     @GetMapping("/{id}")
-    public Appointment getAppointmentById(@PathVariable Integer id) {
+    public AppointmentEntity getAppointmentById(@PathVariable Integer id) {
         return appointmentService.getAppointmentById(id);
     }
 
     @PostMapping
-    public Appointment addAppointment(@RequestBody Appointment appointment) {
-        return appointmentService.addAppointment(appointment);
+    public AppointmentEntity addAppointment(@RequestBody AppointmentEntity appointmentEntity) {
+        return appointmentService.addAppointment(appointmentEntity);
     }
 
     @PutMapping("/{id}")
-    public Appointment updateAppointmentById(@RequestBody Appointment appointment, @PathVariable Integer id) {
-        appointment.setId(id);
-        return appointmentService.updateAppointment(appointment);
+    public AppointmentEntity updateAppointmentById(@RequestBody AppointmentEntity appointmentEntity, @PathVariable Integer id) {
+        appointmentEntity.setId(id);
+        return appointmentService.updateAppointment(appointmentEntity);
     }
 
     @DeleteMapping
